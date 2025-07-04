@@ -1,0 +1,9 @@
+numpy
+pandas
+tensorflow
+keras
+Flask
+scikit-learn
+matplotlib
+seaborn
+python-dateutil

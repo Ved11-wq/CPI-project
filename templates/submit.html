@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPI Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('predict') }}">Predict CPI</a>
+    </div>
+
+    <div class="container">
+        <h2>Prediction Result</h2>
+        <div class="result-box">
+            {% if prediction %}
+            <p>Predicted CPI: {{ prediction }}</p>
+            <p>The predicted Consumer Price Index (CPI) is based on the provided economic indicators and sector information.</p>
+            {% elif error %}
+            <p class="error">{{ error }}</p>
+            <p>Please check the input values and try again.</p>
+            {% endif %}
+        </div>
+        <div class="buttons">
+            <a href="{{ url_for('predict') }}" class="btn">Make Another Prediction</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Consumer Price Index Prediction System</p>
+    </footer>
+</body>
+</html>

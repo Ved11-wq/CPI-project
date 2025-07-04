@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict CPI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('predict') }}">Predict CPI</a>
+    </div>
+
+    <div class="container">
+        <h2>Predict Consumer Price Index</h2>
+        <form action="{{ url_for('submit') }}" method="POST">
+            <div class="form-group">
+                <label for="sector">Sector:</label>
+                <div class="radio-group">
+                    <input type="radio" id="urban" name="sector" value="Urban" checked>
+                    <label for="urban">Urban</label>
+                    <input type="radio" id="rural_urban" name="sector" value="Rural+Urban">
+                    <label for="rural_urban">Rural+Urban</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="month">Month:</label>
+                <select id="month" name="month" class="form-control">
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" class="form-control" value="2023">
+            </div>
+
+            <div class="form-group">
+                <label for="housing_value">Housing Value:</label>
+                <select id="housing_value" name="housing_value" class="form-control">
+                    <option value="100">Default (100)</option>
+                    <option value="171.2">171.2</option>
+                    <option value="171.8">171.8</option>
+                    <option value="172.1">172.1</option>
+                    <option value="173.5">173.5</option>
+                    <option value="175.2">175.2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cereals">Cereals and products</label>
+                <input type="number" class="form-control" id="cereals" name="Cereals and products" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="meat">Meat and fish</label>
+                <input type="number" class="form-control" id="meat" name="Meat and fish" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="egg">Egg</label>
+                <input type="number" class="form-control" id="egg" name="Egg" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="milk">Milk and products</label>
+                <input type="number" class="form-control" id="milk" name="Milk and products" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="oils">Oils and fats</label>
+                <input type="number" class="form-control" id="oils" name="Oils and fats" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="fruits">Fruits</label>
+                <input type="number" class="form-control" id="fruits" name="Fruits" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="vegetables">Vegetables</label>
+                <input type="number" class="form-control" id="vegetables" name="Vegetables" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="pulses">Pulses and products</label>
+                <input type="number" class="form-control" id="pulses" name="Pulses and products" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="sugar">Sugar and Confectionery</label>
+                <input type="number" class="form-control" id="sugar" name="Sugar and Confectionery" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="spices">Spices</label>
+                <input type="number" class="form-control" id="spices" name="Spices" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="beverages">Non-alcoholic beverages</label>
+                <input type="number" class="form-control" id="beverages" name="Non-alcoholic beverages" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="meals">Prepared meals, snacks, sweets etc.</label>
+                <input type="number" class="form-control" id="meals" name="Prepared meals, snacks, sweets etc." value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="food">Food and beverages</label>
+                <input type="number" class="form-control" id="food" name="Food and beverages" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="tobacco">Pan, tobacco and intoxicants</label>
+                <input type="number" class="form-control" id="tobacco" name="Pan, tobacco and intoxicants" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="clothing">Clothing</label>
+                <input type="number" class="form-control" id="clothing" name="Clothing" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="footwear">Footwear</label>
+                <input type="number" class="form-control" id="footwear" name="Footwear" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="clothing_footwear">Clothing and footwear</label>
+                <input type="number" class="form-control" id="clothing_footwear" name="Clothing and footwear" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="fuel">Fuel and light</label>
+                <input type="number" class="form-control" id="fuel" name="Fuel and light" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="household">Household goods and services</label>
+                <input type="number" class="form-control" id="household" name="Household goods and services" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="health">Health</label>
+                <input type="number" class="form-control" id="health" name="Health" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="transport">Transport and communication</label>
+                <input type="number" class="form-control" id="transport" name="Transport and communication" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="recreation">Recreation and amusement</label>
+                <input type="number" class="form-control" id="recreation" name="Recreation and amusement" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="education">Education</label>
+                <input type="number" class="form-control" id="education" name="Education" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="personal">Personal care and effects</label>
+                <input type="number" class="form-control" id="personal" name="Personal care and effects" value="100" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="miscellaneous">Miscellaneous</label>
+                <input type="number" class="form-control" id="miscellaneous" name="Miscellaneous" value="100" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Predict CPI</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 CPI Prediction App</p>
+    </footer>
+</body>
+</html>
